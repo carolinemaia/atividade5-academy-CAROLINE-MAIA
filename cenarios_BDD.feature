@@ -1,3 +1,5 @@
+Funcionalidade: Verificar links da página inicial
+
 Funcionalidade: Criar usuário;
 Contexto: Acessar tela de cadastro de usuário
 Dado que acesso a página inicial do site
