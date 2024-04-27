@@ -1,4 +1,6 @@
 import { fakerPT_BR } from "@faker-js/faker";
+import CadastroPage from "../support/cadastro.page";
+const cadastroPage = new CadastroPage();
 
 describe("Cenários de criaçao de usuário", () => {
   var nome = fakerPT_BR.person.fullName();
@@ -10,16 +12,21 @@ describe("Cenários de criaçao de usuário", () => {
     });
 
     it("Nao deve ser possível cadastrar usuário sem Nome preenchido", () => {
-      cy.contains("a[href='/users/novo']", "Novo").click();
-      cy.get("#email").type(email);
-      cy.contains("Salvar").click();
+      cadastroPage.clickNovo();
+      cy.intercept("POST", "/users").as("postUsuario");
+      cadastroPage.typeEmail(email);
+      cadastroPage.clickSalvar();
+
       cy.contains("O campo nome é obrigatório.").should("be.visible");
     });
 
-    it("Nao deve ser possível cadastrar usuário sem Nome preenchido", () => {
-      cy.contains("a[href='/users/novo']", "Novo").click();
-      cy.get("#name").type(nome);
-      cy.contains("Salvar").click();
+    it("Nao deve ser possível cadastrar usuário sem Email preenchido", () => {
+      cadastroPage.clickNovo();
+      cy.intercept("POST", "/users").as("postUsuario");
+      cadastroPage.typeNome(nome);
+      cadastroPage.clickSalvar();
+      //cy.wait("@postUsuario"); pq ta quebrando???
+
       cy.contains("O campo e-mail é obrigatório.").should("be.visible");
     });
 
@@ -28,10 +35,11 @@ describe("Cenários de criaçao de usuário", () => {
       for (let i = 0; i < 101; i++) {
         nomeCaractere += "a";
       }
-      cy.contains("a[href='/users/novo']", "Novo").click();
+      cadastroPage.clickNovo();
       cy.get("#name").type(nomeCaractere);
-      cy.get("#email").type(email);
-      cy.contains("Salvar").click();
+      cadastroPage.typeEmail(email);
+      cadastroPage.clickSalvar();
+
       cy.contains("Informe no máximo 100 caracteres para o nome").should(
         "be.visible"
       );
@@ -42,10 +50,11 @@ describe("Cenários de criaçao de usuário", () => {
       for (let i = 0; i < 61; i++) {
         emailCaractere += "b";
       }
-      cy.contains("a[href='/users/novo']", "Novo").click();
-      cy.get("#name").type(nome);
+      cadastroPage.clickNovo();
+      cadastroPage.typeNome(nome);
       cy.get("#email").type(emailCaractere + "@raro.com");
-      cy.contains("Salvar").click();
+      cadastroPage.clickSalvar();
+
       cy.contains("Informe no máximo 60 caracteres para o e-mail").should(
         "be.visible"
       );
@@ -88,3 +97,5 @@ describe("Cenários de criaçao de usuário", () => {
     });
   });
 });
+
+describe("Cenários para listar usuários", () => {});
