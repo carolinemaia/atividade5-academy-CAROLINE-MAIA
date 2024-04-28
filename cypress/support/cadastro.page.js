@@ -12,8 +12,9 @@ export default class CadastroPage {
   }
 
   registrarUsuario(nome, email) {
-    cypress.get(this.inputNome).type(nome);
-    cypress.get(this.inputEmail).type(email);
+    cy.contains("Novo").click();
+    cy.get(this.inputNome).type(nome);
+    cy.get(this.inputEmail).type(email);
     cy.contains("Salvar").click();
   }
 
