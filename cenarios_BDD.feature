@@ -46,9 +46,6 @@ E informo e-mail já registrado na base
 Quando clico em Salvar
 Então o processo é bloqueado com alerta informando e-mail ja utilizado
 
-
-
-
 Funcionalidade: Buscar usuario
 Cenário: Buscar usuário pelo nome
 Dado que estou na página inicial do site,
