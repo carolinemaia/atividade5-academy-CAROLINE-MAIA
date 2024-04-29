@@ -71,7 +71,7 @@ describe("Cenários de criaçao de usuário", () => {
       cy.contains("Usuário salvo com sucesso!").should("be.visible");
     });
 
-    it.only("Deve retornar mensagem informando que usuário já está registrado", () => {
+    it("Deve retornar mensagem informando que usuário já está registrado", () => {
       cy.intercept("POST", "/api/v1/users", {
         statusCode: 422,
         body: {
