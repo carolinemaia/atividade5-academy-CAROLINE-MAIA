@@ -11,12 +11,6 @@ export default class CadastroPage {
     cy.get(this.inputEmail).type(email);
   }
 
-  registrarUsuario(nome, email) {
-    cy.contains("Novo").click();
-    cy.get(this.inputNome).type(nome);
-    cy.get(this.inputEmail).type(email);
-    cy.contains("Salvar").click();
-  }
 
   clickSalvar() {
     cy.contains("Salvar").click();
@@ -24,5 +18,12 @@ export default class CadastroPage {
 
   clickNovo() {
     cy.contains("Novo").click();
+  }
+
+  registrarUsuario(nome, email) {
+    cy.contains("Novo").click();
+    cy.get(this.inputNome).type(nome);
+    cy.get(this.inputEmail).type(email);
+    cy.contains("Salvar").click();
   }
 }

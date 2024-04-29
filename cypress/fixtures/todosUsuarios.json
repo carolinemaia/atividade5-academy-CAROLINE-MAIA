@@ -1,0 +1,72 @@
+[
+  {
+    "id": "c52dcbd2-4ae5-4994-ad0c-c36414469e8c",
+    "name": "Eriko",
+    "email": "eriko@qa.com.br",
+    "createdAt": "2024-04-28T21:08:45.884Z",
+    "updatedAt": "2024-04-28T21:08:45.884Z"
+  },
+  {
+    "id": "ca8efbac-3269-4d28-8e89-4cd53d73f197",
+    "name": "Maynard",
+    "email": "ramon80@yahoo.com",
+    "createdAt": "2024-04-28T21:11:00.495Z",
+    "updatedAt": "2024-04-28T21:11:00.495Z"
+  },
+  {
+    "id": "daaa1c9a-a73c-41a2-af29-74a0aff8c336",
+    "name": "Name Surname",
+    "email": "user@example.com",
+    "createdAt": "2024-04-28T21:11:37.274Z",
+    "updatedAt": "2024-04-28T21:11:37.274Z"
+  },
+  {
+    "id": "cb284b61-b3d0-482c-888e-87185e39b78f",
+    "name": "bebe",
+    "email": "bebe@bebe.com.br",
+    "createdAt": "2024-04-28T21:12:05.592Z",
+    "updatedAt": "2024-04-28T21:12:05.592Z"
+  },
+  {
+    "id": "48f2301b-495b-405e-b605-b1ee001afdc7",
+    "name": "Susan",
+    "email": "turner42@gmail.com",
+    "createdAt": "2024-04-28T21:12:38.531Z",
+    "updatedAt": "2024-04-28T21:12:38.531Z"
+  },
+  {
+    "id": "c4bca583-4888-4a57-9c26-9f51651c67c5",
+    "name": "Price",
+    "email": "pascale.turner41@hotmail.com",
+    "createdAt": "2024-04-28T21:14:21.522Z",
+    "updatedAt": "2024-04-28T21:14:21.522Z"
+  },
+  {
+    "id": "de028241-1aeb-4d9f-83fb-47912beb4e56",
+    "name": "Direct Assurance Consultant",
+    "email": "mozell.funk@hotmail.com",
+    "createdAt": "2024-04-28T21:14:34.183Z",
+    "updatedAt": "2024-04-28T21:14:34.183Z"
+  },
+  {
+    "id": "22a6d5c8-f88c-4fc3-a187-ceae7a089e3b",
+    "name": "Verla",
+    "email": "victoria57@yahoo.com",
+    "createdAt": "2024-04-28T21:15:51.011Z",
+    "updatedAt": "2024-04-28T21:15:51.011Z"
+  },
+  {
+    "id": "9d61824e-f394-48cf-80d5-d81742b65298",
+    "name": "Katelyn",
+    "email": "timmothy.green58@gmail.com",
+    "createdAt": "2024-04-28T21:17:27.627Z",
+    "updatedAt": "2024-04-28T21:17:27.627Z"
+  },
+  {
+    "id": "a82a538c-c614-45c6-b1d7-db14101a4e3d",
+    "name": "Future Identity Architect",
+    "email": "helene_kessler50@hotmail.com",
+    "createdAt": "2024-04-28T21:17:31.579Z",
+    "updatedAt": "2024-04-28T21:17:31.579Z"
+  }
+]

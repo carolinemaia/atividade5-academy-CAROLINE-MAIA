@@ -50,6 +50,11 @@ Então o site direciona para o cadastro do usuario,
 Mas senao for localizado o site emite alerta de "Usuário não encontrado"
 
 
-
-
+Funcionalidade: Listar todos os usuários
+Cenário: Listar usuários que possuem cadastro
+Dado que estou na pagina inicial do site,
+E visualizo que possui cadastros de usuários,
+Quando percorro todas as paginas,
+Entao consigo visualizar todos os usuarios
+Mas se nao houver cadastro retorna alerta que nao possui usuarios cadastrados
 
