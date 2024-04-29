@@ -1,4 +1,4 @@
-Funcionalidade: Criar usuário;
+Funcionalidade: Criação de usuário;
 Contexto: Acessar tela de cadastro de usuário
 Dado que acesso a página inicial do site
 E clico em Novo
@@ -23,6 +23,17 @@ E preencho campo Nome com <= 100 caracteres
 E preencho email com > 60 caracteres
 Então o processo é bloqueado com a mensagem "Informe no máximo 60 caracteres para o e-mail"
 
+Cenário: Cadastrar usuarios com menos de 4 caracteres
+Quando informo usuario com menos de 4 caracteres
+Entao o site emite mensagem "Informe pelo menos 4 letras para o nome."
+E nao permite cadastro de usuario;
+
+Cenário: Cadastrar usuario com formato de email inválido
+E informo usuario válido,
+Quando informo email com formato inválido
+Então o site emite mensagem "Formato de e-mail inválido"
+
+
 Cenário: Registrar novo usuário com credenciais válidas
 E informo um nome <= 100 caracteres,
 E informo um e-mail válido,
@@ -34,6 +45,8 @@ E informo nome <= 100 caracteres
 E informo e-mail já registrado na base
 Quando clico em Salvar
 Então o processo é bloqueado com alerta informando e-mail ja utilizado
+
+
 
 
 Funcionalidade: Buscar usuario

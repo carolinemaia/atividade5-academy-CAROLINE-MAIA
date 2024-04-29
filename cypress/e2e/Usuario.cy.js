@@ -16,15 +16,11 @@ describe("Cenários de criaçao de usuário", () => {
       cadastroPage.clickNovo();
       cadastroPage.typeEmail(email);
       cadastroPage.clickSalvar();
-
       cy.contains("O campo nome é obrigatório.").should("be.visible");
     });
 
     it("Nao deve ser possível cadastrar usuário sem Email preenchido", () => {
-      cadastroPage.clickNovo();
-      cadastroPage.typeNome(nome);
-      cadastroPage.clickSalvar();
-      
+      cadastroPage.registrarUsuario(nome, " ");
       cy.contains("O campo e-mail é obrigatório.").should("be.visible");
     });
 
@@ -33,11 +29,7 @@ describe("Cenários de criaçao de usuário", () => {
       for (let i = 0; i < 101; i++) {
         nomeCaractere += "a";
       }
-      cadastroPage.clickNovo();
-      cy.get("#name").type(nomeCaractere);
-      cadastroPage.typeEmail(email);
-      cadastroPage.clickSalvar();
-
+      cadastroPage.registrarUsuario(nomeCaractere, email);
       cy.contains("Informe no máximo 100 caracteres para o nome").should(
         "be.visible"
       );
@@ -48,14 +40,22 @@ describe("Cenários de criaçao de usuário", () => {
       for (let i = 0; i < 61; i++) {
         emailCaractere += "b";
       }
-      cadastroPage.clickNovo();
-      cadastroPage.typeNome(nome);
-      cy.get("#email").type(emailCaractere + "@raro.com");
-      cadastroPage.clickSalvar();
-
+      cadastroPage.registrarUsuario(nome, emailCaractere + "@raro.com");
       cy.contains("Informe no máximo 60 caracteres para o e-mail").should(
         "be.visible"
       );
+    });
+
+    it("Cadastrar usuário com menos de 4 caractere", () => {
+      cadastroPage.registrarUsuario("abc", email);
+      cy.contains("Informe pelo menos 4 letras para o nome.").should(
+        "be.visible"
+      );
+    });
+
+    it("Cadastrar usuário com formato de email invalido", () => {
+      cadastroPage.registrarUsuario(nome, "abcdcom");
+      cy.contains("Formato de e-mail inválido").should("be.visible");
     });
   });
 
@@ -66,27 +66,23 @@ describe("Cenários de criaçao de usuário", () => {
 
     it("Deve registrar com sucesso o novo usuário", () => {
       cadastroPage.registrarUsuario(nome, email);
-
       cy.get("#name").invoke("val").should("be.empty");
       cy.get("#email").invoke("val").should("be.empty");
-
       cy.contains("Usuário salvo com sucesso!").should("be.visible");
     });
 
-    it("Deve retornar mensagem informando que usuário já está registrado", () => {
-      cy.intercept("POST", "/api/v1/users",{ 
+    it.only("Deve retornar mensagem informando que usuário já está registrado", () => {
+      cy.intercept("POST", "/api/v1/users", {
         statusCode: 422,
         body: {
           error: "User already exists.",
         },
-    });
-      cadastroPage.registrarUsuario("Carol da Silva", "caroldasilva@ja.existe" );
-      
+      });
+      cadastroPage.registrarUsuario("Carol da Silva", "caroldasilva@ja.existe");
       cy.wait(1000);
-      
       cy.contains("Este e-mail já é utilizado por outro usuário.").should(
         "be.visible"
-     );
+      );
     });
   });
-})
+});
