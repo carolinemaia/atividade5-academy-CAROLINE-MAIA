@@ -1,6 +1,6 @@
 Funcionalidade: Criação de usuário;
 Contexto: Acessar tela de cadastro de usuário
-Dado que acesso a página inicial do site
+Dado que acessei a página inicial do site
 E clico em Novo
 
 Cenário: Registrar novo usuário sem campo Nome preenchido
@@ -48,7 +48,7 @@ Então o processo é bloqueado com alerta informando e-mail ja utilizado
 
 Funcionalidade: Buscar usuario
 Cenário: Buscar usuário pelo nome
-Dado que estou na página inicial do site,
+Dado que acessei a página inicial do site,
 Quando insiro o nome no campo
 Então o site direciona para o cadastro do usuario,
 Mas senao for localizado o site emite alerta de "Usuário não encontrado"

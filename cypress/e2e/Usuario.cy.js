@@ -14,8 +14,10 @@ describe("Cenários de criaçao de usuário", () => {
 
     it("Nao deve ser possível cadastrar usuário sem Nome preenchido", () => {
       cadastroPage.clickNovo();
+
       cadastroPage.typeEmail(email);
       cadastroPage.clickSalvar();
+
       cy.contains("O campo nome é obrigatório.").should("be.visible");
     });
 
@@ -29,6 +31,7 @@ describe("Cenários de criaçao de usuário", () => {
       for (let i = 0; i < 101; i++) {
         nomeCaractere += "a";
       }
+
       cadastroPage.registrarUsuario(nomeCaractere, email);
       cy.contains("Informe no máximo 100 caracteres para o nome").should(
         "be.visible"
@@ -40,6 +43,7 @@ describe("Cenários de criaçao de usuário", () => {
       for (let i = 0; i < 61; i++) {
         emailCaractere += "b";
       }
+
       cadastroPage.registrarUsuario(nome, emailCaractere + "@raro.com");
       cy.contains("Informe no máximo 60 caracteres para o e-mail").should(
         "be.visible"
@@ -64,8 +68,10 @@ describe("Cenários de criaçao de usuário", () => {
       cy.visit("https://rarocrud-frontend-88984f6e4454.herokuapp.com/users");
     });
 
-    it("Deve registrar com sucesso o novo usuário", () => {
+    it.only("Deve registrar com sucesso o novo usuário", () => {
+      cy.intercept("POST", "/api/v1/users").as("post");
       cadastroPage.registrarUsuario(nome, email);
+      cy.wait("@post");
       cy.get("#name").invoke("val").should("be.empty");
       cy.get("#email").invoke("val").should("be.empty");
       cy.contains("Usuário salvo com sucesso!").should("be.visible");
@@ -77,9 +83,9 @@ describe("Cenários de criaçao de usuário", () => {
         body: {
           error: "User already exists.",
         },
-      });
+      }).as("post");
       cadastroPage.registrarUsuario("Carol da Silva", "caroldasilva@ja.existe");
-      cy.wait(1000);
+      cy.wait("@post");
       cy.contains("Este e-mail já é utilizado por outro usuário.").should(
         "be.visible"
       );
